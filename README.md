@@ -56,9 +56,9 @@ Jupyter, Git/GitHub
     uv run python -m src.migration.get_wbdata
     ```  
     The file will be saved into the `data/raw/` folder.  
-- **UNDP Human Development Index (HDI)**  
-  - Must be downloaded manually from [UNDP Data Center](https://hdr.undp.org/data-center/documentation-and-downloads).  
-  - Detailed steps are provided in `data/raw/INSTRUCTIONS_UNDP.txt`.  
+- **UNDP – Human Development Index (HDI)**  
+  - Must be downloaded manually from the [UNDP Data Center](https://hdr.undp.org/data-center/documentation-and-downloads).  
+  - Detailed steps are provided in [DATA_INSTRUCTIONS.md](./DATA_INSTRUCTIONS.md).  
   - The dataset is saved as `hdr-data.xlsx` and should be placed in the `data/raw/` folder.
 
 **Dataset Size:**
