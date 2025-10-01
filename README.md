@@ -50,8 +50,12 @@ Jupyter, Git/GitHub
 ## 📊 Data
 
 **Data Sources:**  
-- **World Bank World Development Indicators**  
-  - Automatically downloaded via `scripts/get_wbdata.py` into `data/raw/`.
+- **World Bank – World Development Indicators (WDI)**  
+  - The dataset is retrieved automatically by running:  
+    ```bash
+    uv run python -m src.migration.get_wbdata
+    ```  
+    The file will be saved into the `data/raw/` folder.  
 - **UNDP Human Development Index (HDI)**  
   - Must be downloaded manually from [UNDP Data Center](https://hdr.undp.org/data-center/documentation-and-downloads).  
   - Detailed steps are provided in `data/raw/INSTRUCTIONS_UNDP.txt`.  
