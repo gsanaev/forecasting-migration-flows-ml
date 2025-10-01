@@ -126,15 +126,11 @@ Golib Sanaev
 
 **GitHub:** [@gsanaev](https://github.com/gsanaev)  
 **E-Mail:** deine.email@beispiel.de  
-**LinkedIn:** [Dein Profil](https://linkedin.com/in/dein-profil)
-
-
 **LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev/)
 
-## 🙏 Danksagungen
+## 🙏 Acknowledgments
+StackFuel Team
+World Bank and UNDP for open data
+scikit-learn & SHAP communities for ML tooling
 
-<!-- Hier kannst du Personen oder Ressourcen erwähnen, die dir geholfen haben -->
-
----
-
-**⭐ Wenn dir dieses Projekt gefällt, gib gerne einen Star!**
+**⭐ If you find this project interesting, please give it a star!**
