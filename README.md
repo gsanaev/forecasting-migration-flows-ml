@@ -30,7 +30,7 @@ Exploratory data analysis, feature engineering, and machine learning models incl
 │   └── 02_eda.ipynb            # Exploratory Data Analysis
 │   └── 03_modeling.ipynb       # ML models (LR, Ridge, RF)
 │   └── 04_results.ipynb        # Results & SHAP interpretation
-├── src/dpp                     # Python Module
+├── src/migration               # Python Module
 ├── test/                       # Unit Tests
 ├── pyproject.toml              # Project configuration
 └── docs/                       # Additional documentation
@@ -49,20 +49,24 @@ Jupyter, Git/GitHub
 
 ## 📊 Data
 
-**Data Source::** 
-- World Bank World Development Indicators
-- UNDP Human Development Index 
+**Data Sources:**  
+- **World Bank World Development Indicators**  
+  - Automatically downloaded via `scripts/get_wbdata.py` into `data/raw/`.
+- **UNDP Human Development Index (HDI)**  
+  - Must be downloaded manually from [UNDP Data Center](https://hdr.undp.org/data-center/documentation-and-downloads).  
+  - Detailed steps are provided in `data/raw/INSTRUCTIONS_UNDP.txt`.  
+  - The dataset is saved as `hdr-data.xlsx` and should be placed in the `data/raw/` folder.
 
 **Dataset Size:**
-- **Countries:** 168
-- **Years:** 1990-2023 (34 years)
-- **Observations:** 5,712
+- **Countries:** 168  
+- **Years:** 1990–2023 (34 years)  
+- **Observations:** 5,712  
 
 **Important Features:**
-- **Demographics:** population, density, fertility, life expectancy, under-5 mortality, urbanization
-- **Economics:** GDP per capita, GDP growth, exports, imports, unemployment
-- **Technology:** mobile subscriptions
-- **Human Development:** HDI
+- **Demographics:** population, density, fertility, life expectancy, under-5 mortality, urbanization  
+- **Economics:** GDP per capita, GDP growth, exports, imports, unemployment  
+- **Technology:** mobile subscriptions  
+- **Human Development:** HDI  
 - **Target:** Net migration (per 1,000 people)
 
 ## 🤖 Methodology
@@ -103,8 +107,16 @@ uv sync
 ```
 
 ### Execution
+Before running the notebooks, ensure that the datasets are available in `data/raw/`:  
+
+- **World Bank data** → run  
+  ```bash
+  uv run python -m src.migration.get_wbdata
+- **UNDP HDI data** → manually download and place `hdr-data.xlsx` into `data/raw/` (see `INSTRUCTIONS_UNDP.txt`).  
+
+Then execute the notebooks in order: 
+
 ```bash
-# Run the notebooks in order:
 # 1. notebooks/01_data_prep.ipynb
 # 2. notebooks/02_eda.ipynb  
 # 3. notebooks/03_modeling.ipynb
