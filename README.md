@@ -129,8 +129,8 @@ Golib Sanaev
 **LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev/)
 
 ## 🙏 Acknowledgments
-StackFuel Team
-World Bank and UNDP for open data
-scikit-learn & SHAP communities for ML tooling
+- StackFuel Team
+- World Bank and UNDP for open data
+- scikit-learn & SHAP communities for ML tooling
 
 **⭐ If you find this project interesting, please give it a star!**
