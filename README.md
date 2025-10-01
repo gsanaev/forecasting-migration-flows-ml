@@ -127,7 +127,7 @@ Golib Sanaev
 **GitHub:** [@gsanaev](https://github.com/gsanaev)  
 **E-Mail:** deine.email@beispiel.de  
 **LinkedIn:** [Dein Profil](https://linkedin.com/in/dein-profil)
-**LinkedIn:** [golib-sanaev](https://www.linkedin.com/in/golib-sanaev/)
+**LinkedIn:** (https://www.linkedin.com/in/golib-sanaev/)
 
 ## 🙏 Danksagungen
 
