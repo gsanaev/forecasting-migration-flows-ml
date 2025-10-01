@@ -124,7 +124,8 @@ uv sync
 
 ## 📞 Kontakt
 
-**GitHub:** [@DeinUsername](https://github.com/DeinUsername)  
+**GitHub:** [@DeinUsername](https://github.com/DeinUsername)
+**GitHub:** [@gsanaev](https://github.com/gsanaev)  
 **E-Mail:** deine.email@beispiel.de  
 **LinkedIn:** [Dein Profil](https://linkedin.com/in/dein-profil)
 
