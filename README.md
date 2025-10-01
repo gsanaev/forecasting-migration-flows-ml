@@ -125,7 +125,7 @@ Golib Sanaev
 ## 📞 Contact
 
 **GitHub:** [@gsanaev](https://github.com/gsanaev)  
-**E-Mail:** deine.email@beispiel.de  
+**E-Mail:** gsanaev@gmail.com  
 **LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev/)
 
 ## 🙏 Acknowledgments
