@@ -1,133 +1,133 @@
-# 📋 Template-Anleitung
+# Forecasting Migration Flows with Machine Learning
 
-> **Für Kursteilnehmer*innen:** Diese Sektion nach dem Setup deines Projekts löschen!
+> This project explores the determinants of international migration using World Bank Indicators (1990–2023) and the Human Development Index (HDI) across 168 countries. By applying machine learning models, it aims to forecast net migration (per 1,000 people) and identify the key demographic, economic, and social drivers of global migration flows.
 
-## So verwenden Sie dieses Template:
-Dieses Template hilft dir, dein Data Science Projekt effizient zu organisieren und zu dokumentieren. Es bietet eine gängige Struktur, um deine Arbeit zu planen, durchzuführen und zu präsentieren. Templates können in GitHub über den Button **"Use this template"** in der oberen rechten Ecke in ein eigenes Repository überführt werden. Nutze diese Vorlage als Inspiration und passe sie an dein Projekt an! 
+## 📊 Project overview
 
-Neben einer grundlegenden Ordnerstruktur für deine Dateien und Notebooks, enthält dieses Template unter `.github\ISSUE_TEMPLATE` einige Vorlagen für GitHub Issues, die dir helfen, deine Aufgaben zu organisieren und den Fortschritt deines Projekts zu verfolgen.
+**Problem Statement:** 
+International migration is influenced by complex demographic, economic, social, and technological factors. Understanding these drivers is critical for forecasting migration flows and informing policy decisions.
 
-Lies dir die Datei `PROJECT_SETUP.md` durch, um mehr über die Nutzung dieses Templates zu erfahren.
+**Objective:** 
+To forecast **net migration (per 1,000 people)** across 168 countries (1990–2023) and identify the most influential determinants of migration using demographic, economic, and human development indicators.
 
-Für dein Projekt kannst du die folgenden Abschnitte in der `README.md` Datei anpassen, um dein Projekt zu beschreiben und zu präsentieren. Lösche anschließend diese Anleitung.
-
-
-# [DEIN PROJEKTTITEL HIER] 🚀
-
-> Eine kurze, prägnante Beschreibung deines Data Science Projekts in 1-2 Sätzen.
-
-## 📊 Projektübersicht
-
-**Problemstellung:** 
-<!-- Beschreibe das Problem, das du lösen möchtest -->
-
-**Ziel:** 
-<!-- Was ist das Hauptziel deines Projekts? -->
-
-**Methoden:** 
-<!-- Welche Techniken/Algorithmen verwendest du? -->
+**Methods:** 
+Exploratory data analysis, feature engineering, and machine learning models including **Linear Regression, Ridge Regression, Random Forest**, and **SHAP** for model interpretation.
 
 ## 🎯 Key Findings
 
-<!-- Hier deine wichtigsten Erkenntnisse in 3-5 Bullet Points -->
-- 📈 **Erkenntnis 1:** Kurze Beschreibung
-- 🔍 **Erkenntnis 2:** Kurze Beschreibung  
-- 💡 **Erkenntnis 3:** Kurze Beschreibung
+- 📈 **Finding 1:** Kurze Beschreibung
+- 🔍 **Finding 2:** Kurze Beschreibung  
+- 💡 **Finding 3:** Kurze Beschreibung
 
-## 📁 Repository Struktur
+## 📁 Repository Structure
 
 ```
 ├── data/
-│   ├── raw/                    # Originaldaten
-│   └── processed/              # Bereinigte Daten
+│   ├── raw/                    # Original World Bank & UNDP data
+│   └── processed/              # Cleaned and transformed data
 ├── notebooks/                  # Jupyter Notebooks
-│   └── 01_exploration.ipynb    # Datenexploration
+│   └── 01_data_prep.ipynb      # Data preparation
+│   └── 02_eda.ipynb            # Exploratory Data Analysis
+│   └── 03_modeling.ipynb       # ML models (LR, Ridge, RF)
+│   └── 04_results.ipynb        # Results & SHAP interpretation
 ├── src/dpp                     # Python Module
 ├── test/                       # Unit Tests
-├── pyproject.toml              # Projektkonfiguration
-└── docs/                       # Zusätzliche Dokumentation
+├── pyproject.toml              # Project configuration
+└── docs/                       # Additional documentation
 ```
 
-## 🔧 Verwendete Technologien
+## 🔧 Technologies Used
 
 **Programmiersprachen:**
-<!-- z.B. Python, R, SQL -->
+Python
 
 **Libraries & Frameworks:**
-<!-- z.B. pandas, scikit-learn, matplotlib, etc. -->
+pandas, numpy, scikit-learn, matplotlib, seaborn, shap
 
 **Tools:**
-<!-- z.B. Jupyter, Git, Docker, etc. -->
+Jupyter, Git/GitHub
 
-## 📊 Daten
+## 📊 Data
 
-**Datenquelle:** 
-<!-- Woher kommen deine Daten? -->
+**Data Source::** 
+- World Bank World Development Indicators
+- UNDP Human Development Index 
 
-**Datensatz-Größe:** 
-<!-- Anzahl Zeilen/Spalten, Dateigröße -->
+**Dataset Size:**
+- **Countries:** 168
+- **Years:** 1990-2023 (34 years)
+- **Observations:** 5,712
 
-**Wichtige Features:** 
-<!-- Beschreibung der wichtigsten Variablen -->
+**Important Features:**
+- **Demographics:** population, density, fertility, life expectancy, under-5 mortality, urbanization
+- **Economics:** GDP per capita, GDP growth, exports, imports, unemployment
+- **Technology:** mobile subscriptions
+- **Human Development:** HDI
+- **Target:** Net migration (per 1,000 people)
 
-## 🤖 Methodik
+## 🤖 Methodology
 
 ### Data Preprocessing
-<!-- Kurze Beschreibung deiner Datenbereinigung -->
+- Cleaned missing values, harmonized country-year datasets
+- Transformed net migration into **per 1,000 population**
 
 ### Modeling Approach  
-<!-- Welche Modelle hast du getestet? -->
+- Baseline: Linear Regression
+- Regularized models: Ridge Regression
+- Nonlinear: Random Forest
+- Interpretability: SHAP values
 
 ### Evaluation
-<!-- Wie hast du die Ergebnisse bewertet? -->
+- Performance metrics: RMSE, MAE, R²
+- Feature importance and SHAP analysis
 
-## 📈 Ergebnisse
+## 📈 Results
+(to be filled in after analysis)
 
 **Model Performance:**
 <!-- Deine besten Metriken (Accuracy, RMSE, etc.) -->
 
-**Wichtigste Visualisierungen:**
+**Key Visualizations:**
 <!-- Verweis auf Key-Plots in deinen Notebooks -->
 
-## 🚀 Reproduzierbarkeit
+## 🚀 Reproducibility
 
 ### Setup
 ```bash
-# Repository klonen
-git clone [DEIN-REPO-LINK]
-cd [REPO-NAME]
+# Clone the repository
+git clone https://github.com/yourusername/migration-forecasting-ml.git
+cd migration-forecasting-ml
 
-# Dependencies installieren
+# Install dependencies
 uv sync
 ```
 
-### Ausführung
+### Execution
 ```bash
-# Notebooks in dieser Reihenfolge ausführen:
-# 1. notebooks/01_exploration.ipynb
-# 2. notebooks/02_preprocessing.ipynb  
+# Run the notebooks in order:
+# 1. notebooks/01_data_prep.ipynb
+# 2. notebooks/02_eda.ipynb  
 # 3. notebooks/03_modeling.ipynb
 # 4. notebooks/04_results.ipynb
 ```
 
+## 🎓 About this Project
 
-## 🎓 Über dieses Projekt
+**Context:** 
+Independent research project on migration forecasting with machine learning.
 
-**Kontext:** 
-<!-- Im Rahmen welches Kurses/welcher Veranstaltung? -->
-
-**Zeitraum:** 
-<!-- Wann hast du das Projekt durchgeführt? -->
+**Timeframe:** 
+2025
 
 **Autor:** 
-<!-- Dein Name -->
+Golib Sanaev
 
-## 📞 Kontakt
+## 📞 Contact
 
-**GitHub:** [@DeinUsername](https://github.com/DeinUsername)
 **GitHub:** [@gsanaev](https://github.com/gsanaev)  
 **E-Mail:** deine.email@beispiel.de  
 **LinkedIn:** [Dein Profil](https://linkedin.com/in/dein-profil)
+**LinkedIn:** [golib-sanaev](https://www.linkedin.com/in/golib-sanaev/)
 
 ## 🙏 Danksagungen
 
