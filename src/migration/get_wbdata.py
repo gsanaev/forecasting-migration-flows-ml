@@ -13,6 +13,7 @@ indicators = [
     "SP.ADO.TFRT",       # Adolescent fertility
     "SP.DYN.LE00.IN",    # Life expectancy
     "SH.DYN.MORT",       # Under-5 mortality
+    "SP.POP.GROW",       # Population growth
     "SP.URB.GROW",       # Urban population growth
     "SM.POP.NETM",       # Net migration
 
@@ -37,6 +38,7 @@ col_names = {
     "SP.ADO.TFRT": "adol_fertility",
     "SP.DYN.LE00.IN": "life_expectancy",
     "SH.DYN.MORT": "under5_mortality",
+    "SP.POP.GROW": "pop_growth",
     "SP.URB.GROW": "urban_pop_growth",
     "SM.POP.NETM": "net_migration",
     "IT.CEL.SETS.P2": "mobile_subs",
