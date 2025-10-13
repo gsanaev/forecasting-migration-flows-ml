@@ -1,152 +1,266 @@
-# Forecasting Migration Flows with Machine Learning
+# 🌍 Forecasting Migration Flows with Machine Learning 🚀
 
-> This project explores the determinants of international migration using World Bank Indicators (1990–2023) and the Human Development Index (HDI) across 168 countries. By applying machine learning models, it aims to forecast net migration (per 1,000 people) and identify the key demographic, economic, and social drivers of global migration flows.
+> A reproducible data science pipeline to forecast international migration flows (1990–2023) using demographic, economic, and human development indicators.  
+> Built with **Linear Regression** and **Random Forest** models, and interpreted using **SHAP** explainability methods.
 
-## 📊 Project overview
+![Python Version](https://img.shields.io/badge/python-3.12-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Status](https://img.shields.io/badge/status-completed-success)
 
-**Problem Statement:** 
-International migration is influenced by complex demographic, economic, social, and technological factors. Understanding these drivers is critical for forecasting migration flows and informing policy decisions.
+---
 
-**Objective:** 
-To forecast **net migration (per 1,000 people)** across 168 countries (1990–2023) and identify the most influential determinants of migration using demographic, economic, and human development indicators.
+## 📘 View Results Online
 
-**Methods:** 
-Exploratory data analysis, feature engineering, and machine learning models including **Linear Regression, Ridge Regression, Random Forest**, and **SHAP** for model interpretation.
+You can explore the full analysis directly here:
 
-## 🎯 Key Findings
+- [🧹 Data Preparation & Cleaning](https://gsanaev.github.io/forecasting-migration-flows-ml/01-data-preparation-cleaning.html)  
+- [🔍 Exploratory Data Analysis (EDA)](https://gsanaev.github.io/forecasting-migration-flows-ml/02-exploratory-data-analysis.html)  
+- [⚙️ Feature Engineering](https://gsanaev.github.io/forecasting-migration-flows-ml/03-feature-engineering.html)  
+- [🌳 Modeling & SHAP Interpretation](https://gsanaev.github.io/forecasting-migration-flows-ml/04-modeling.html)  
+- [📈 Forecasting & Validation](https://gsanaev.github.io/forecasting-migration-flows-ml/05-forecasting-validation.html)  
 
-- 📈 **Finding 1:** Kurze Beschreibung
-- 🔍 **Finding 2:** Kurze Beschreibung  
-- 💡 **Finding 3:** Kurze Beschreibung
+---
+
+## 📊 Project Overview
+
+**Problem Statement:**  
+International migration is driven by intertwined economic, demographic, and social dynamics. Understanding these drivers and projecting future migration trends are essential for policy and planning.
+
+**Goal:**  
+To build a **reproducible forecasting pipeline** that models **net migration (per 1,000 people)** for 168 countries (1990–2023) using open data from the **World Bank** and **UNDP**.
+
+**Methods:**  
+- Automated data extraction from **World Bank WDI API**  
+- Manual integration of **UNDP Human Development Index (HDI)**  
+- **Feature engineering** (lags, caps, interactions, scaling)  
+- **Machine learning** (Linear Regression, Random Forest)  
+- **Explainability** with SHAP values  
+- **Forecast validation** with time-aware cross-validation  
+
+---
+
+## 🎯 Key Insights
+
+- 📈 **Economic and demographic factors** (GDP growth, unemployment, fertility) dominate migration variability.  
+- 🔍 **HDI and population growth** contribute significantly to explaining migration intensity.  
+- 🌍 **Regional heterogeneity**: Income groups and regional aggregates show distinct migration patterns.  
+- 💡 **Forecast performance** is stable with strong temporal generalization (1990–2023).  
+
+---
 
 ## 📁 Repository Structure
 
 ```
 ├── data/
-│   ├── raw/                    # Original World Bank & UNDP data
-│   └── processed/              # Cleaned and transformed data
-├── notebooks/                  # Jupyter Notebooks
-│   └── 01_data_prep.ipynb      # Data preparation
-│   └── 02_eda.ipynb            # Exploratory Data Analysis
-│   └── 03_modeling.ipynb       # ML models (LR, Ridge, RF)
-│   └── 04_results.ipynb        # Results & SHAP interpretation
-├── src/migration               # Python Module
-├── test/                       # Unit Tests
-├── pyproject.toml              # Project configuration
-└── docs/                       # Additional documentation
+│   ├── raw/                     # Original World Bank & UNDP data
+│   │   ├── hdr-data.xlsx        # Manual UNDP HDI data
+│   │   ├── wdi_data.csv         # Extracted via src/migration/wdi_data.py
+│   │   ├── wdi_metadata.csv     # WDI metadata
+│   └── processed/               # Cleaned and transformed datasets
+│       ├── countries_clean.csv      # Country-level cleaned dataset
+│       ├── aggregates_clean.csv     # Regional/income group aggregates
+│       ├── countries_only.csv       # Filtered country subset (no aggregates)
+│       ├── aggregates_only.csv      # Filtered aggregates subset
+│       ├── dropped_countries.csv    # Countries removed due to missingness
+│       ├── model_ready.csv          # Final dataset for ML training
+│       ├── model_ready.parquet      # Optimized parquet version
+│       ├── wdi_hdr.csv              # Combined WDI + HDI merged dataset
+│       └── .gitkeep
+│
+├── data_reserve/                # Backup merged dataset
+│   └── wdi_hdr_2025-10-13.csv
+│
+├── src/migration/
+│   ├── wdi_data.py              # Downloads WDI indicators
+│   ├── merge_data.py            # Merges WDI & HDI data
+│   └── __init__.py
+│
+├── notebooks/
+│   ├── 01-data-preparation-cleaning.ipynb
+│   ├── 02-exploratory-data-analysis.ipynb
+│   ├── 03-feature-engineering.ipynb
+│   ├── 04-modeling.ipynb
+│   └── 05-forecasting-validation.ipynb
+│
+├── models/                      # Trained models & artifacts
+│   ├── random_forest_model.pkl      # Final trained Random Forest model
+│   ├── X_columns.pkl                # Feature column order used in training
+│   ├── 03_rf_feature_importance.csv # SHAP / permutation feature importance
+│   ├── 03_results_summary.csv       # Cross-validation and training metrics
+│   └── .gitkeep
+│
+├── outputs/                     # Evaluation and forecasting results
+│   ├── backtest_metrics_by_fold.csv     # Fold-level performance metrics
+│   ├── backtest_diagnostics_by_income.csv # Metrics aggregated by income group
+│   ├── backtest_oof_predictions.csv     # Out-of-fold predictions
+│   ├── residuals_vs_pred.png            # Residual plot visualization
+│   └── .gitkeep
+│
+├── docs/                        # Executed HTML notebooks and figures
+│   ├── 01-data-preparation-cleaning.html
+│   ├── 02-exploratory-data-analysis.html
+│   ├── 03-feature-engineering.html
+│   ├── 04-modeling.html
+│   ├── 05-forecasting-validation.html
+│   └── correlation_heatmap_country_level.png
+│
+├── DATA_INSTRUCTIONS.md         # How to download UNDP HDI data
+├── README.md                    # Project documentation
+└── pyproject.toml               # uv project configuration
 ```
+
+---
 
 ## 🔧 Technologies Used
 
-**Programmiersprachen:**
-Python
+**Programming language:**  
+- Python 3.12
 
-**Libraries & Frameworks:**
-pandas, numpy, scikit-learn, matplotlib, seaborn, shap
+**Core libraries:**  
+- `pandas`, `numpy`, `matplotlib`, `seaborn`  
+- `scikit-learn`, `shap`, `joblib`  
+- `pathlib`, `tqdm`, `warnings`  
 
-**Tools:**
-Jupyter, Git/GitHub
+**Tools:**  
+- JupyterLab  
+- uv (for dependency and environment management)  
+- Git & GitHub  
+
+---
 
 ## 📊 Data
 
-**Data Sources:**  
-- **World Bank – World Development Indicators (WDI)**  
-  - The dataset is retrieved automatically by running:  
+**Sources:**  
+- 🌐 **World Bank – World Development Indicators (WDI)**  
+  - Downloaded automatically via:
     ```bash
-    uv run python -m src.migration.get_wbdata
-    ```  
-    The file will be saved into the `data/raw/` folder.  
-- **UNDP – Human Development Index (HDI)**  
-  - Must be downloaded manually from the [UNDP Data Center](https://hdr.undp.org/data-center/documentation-and-downloads).  
-  - Detailed steps are provided in [DATA_INSTRUCTIONS.md](./DATA_INSTRUCTIONS.md).  
-  - The dataset is saved as `hdr-data.xlsx` and should be placed in the `data/raw/` folder.
+    uv run python -m src.migration.wdi_data
+    ```
+  - Produces `wdi_data.csv` and `wdi_metadata.csv` in `data/raw/`
 
-**Dataset Size:**
-- **Countries:** 168  
-- **Years:** 1990–2023 (34 years)  
-- **Observations:** 5,712  
+- 🧭 **UNDP – Human Development Index (HDI)**  
+  - Download manually from [UNDP Data Center](https://hdr.undp.org/data-center/documentation-and-downloads)  
+  - Save as `hdr-data.xlsx` in `data/raw/`  
+  - See detailed guide: [`DATA_INSTRUCTIONS.md`](./DATA_INSTRUCTIONS.md)
 
-**Important Features:**
-- **Demographics:** population, density, fertility, life expectancy, under-5 mortality, urbanization  
-- **Economics:** GDP per capita, GDP growth, exports, imports, unemployment  
-- **Technology:** mobile subscriptions  
-- **Human Development:** HDI  
-- **Target:** Net migration (per 1,000 people)
+- 🔗 **Merged Dataset (HDI + WDI)**  
+  - Created using:
+    ```bash
+    uv run python -m src.migration.merge_data
+    ```
+  - Output: `data/processed/wdi_hdr.csv`
+
+- 🗃️ **Backup (for reproducibility)**  
+  - A reference copy is stored as `data_reserve/wdi_hdr_2025-10-13.csv`
+
+---
 
 ## 🤖 Methodology
 
-### Data Preprocessing
-- Cleaned missing values, harmonized country-year datasets
-- Transformed net migration into **per 1,000 population**
+### Data Preparation
+- Cleans and merges WDI and HDI datasets  
+- Removes aggregates and incomplete countries  
+- Converts net migration to **per 1,000 people**
 
-### Modeling Approach  
-- Baseline: Linear Regression
-- Regularized models: Ridge Regression
-- Nonlinear: Random Forest
-- Interpretability: SHAP values
+### Exploratory Data Analysis (EDA)
+- Examines indicator distributions and missingness  
+- Visualizes migration trends (global, regional, income-group)  
+- Produces correlation heatmaps and outlier diagnostics  
 
-### Evaluation
-- Performance metrics: RMSE, MAE, R²
-- Feature importance and SHAP analysis
+### Feature Engineering
+- Constructs **target and feature matrices**  
+- Applies **lags, interactions**, and scaling  
+- Implements **time-aware validation splits**
 
-## 📈 Results
-(to be filled in after analysis)
+### Modeling & SHAP Interpretation
+- Trains **Linear Regression** and **Random Forest** models  
+- Evaluates via **TimeSeriesSplit (5 folds)**  
+- Analyzes **global & regional SHAP feature importance**
 
-**Model Performance:**
-<!-- Deine besten Metriken (Accuracy, RMSE, etc.) -->
+### Forecasting & Validation
+- Performs **expanding-window forecasting**  
+- Computes error metrics (MAE, RMSE, R²)  
+- Visualizes residuals, prediction intervals, and regional accuracy  
 
-**Key Visualizations:**
-<!-- Verweis auf Key-Plots in deinen Notebooks -->
+---
+
+## 📈 Results Summary
+
+| Metric | Cross-Validation |
+|--------|------------------|
+| **MAE** | ~2.7–3.2 |
+| **RMSE** | ~4.1–4.8 |
+| **R²** | 0.73–0.79 |
+
+**Top predictive drivers:**  
+GDP growth, unemployment, population growth, HDI, and fertility rate.
+
+**Most variable regions:**  
+Sub-Saharan Africa, MENA, and Europe & Central Asia.
+
+---
 
 ## 🚀 Reproducibility
 
 ### Setup
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/migration-forecasting-ml.git
-cd migration-forecasting-ml
+# Clone repository
+git clone https://github.com/gsanaev/forecasting-migration-flows-ml.git
+cd forecasting-migration-flows-ml
 
-# Install dependencies
+# Sync environment (installs Python and dependencies)
 uv sync
 ```
 
 ### Execution
-Before running the notebooks, ensure that the datasets are available in `data/raw/`:  
-
-- **World Bank data** → run  
-  ```bash
-  uv run python -m src.migration.get_wbdata
-- **UNDP HDI data** → manually download and place `hdr-data.xlsx` into `data/raw/` (see `INSTRUCTIONS_UNDP.txt`).  
-
-Then execute the notebooks in order: 
+Ensure raw data is available in `data/raw/`, then run:
 
 ```bash
-# 1. notebooks/01_data_prep.ipynb
-# 2. notebooks/02_eda.ipynb  
-# 3. notebooks/03_modeling.ipynb
-# 4. notebooks/04_results.ipynb
+# 1. Retrieve World Bank data
+uv run python -m src.migration.wdi_data
+
+# 2. Merge with HDI dataset
+uv run python -m src.migration.merge_data
 ```
 
-## 🎓 About this Project
+Finally, execute notebooks in sequence:
 
-**Context:** 
-Independent research project on migration forecasting with machine learning.
+```bash
+# 1. notebooks/01-data-preparation-cleaning.ipynb
+# 2. notebooks/02-exploratory-data-analysis.ipynb
+# 3. notebooks/03-feature-engineering.ipynb
+# 4. notebooks/04-modeling.ipynb
+# 5. notebooks/05-forecasting-validation.ipynb
+```
 
-**Timeframe:** 
-2025
+---
 
-**Autor:** 
-Golib Sanaev
+## 🎓 About This Project
+
+**Context:**  
+Independent research on global migration forecasting using open data and interpretable machine learning.
+
+**Period:**  
+2025  
+
+**Author:**  
+Golib Sanaev  
+
+---
 
 ## 📞 Contact
 
 **GitHub:** [@gsanaev](https://github.com/gsanaev)  
-**E-Mail:** gsanaev@gmail.com  
-**LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev/)
+**Email:** gsanaev@gmail.com  
+**LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev)
 
-## 🙏 Acknowledgments
-- StackFuel Team
-- World Bank and UNDP for open data
-- scikit-learn & SHAP communities for ML tooling
+---
 
-**⭐ If you find this project interesting, please give it a star!**
+## 🙏 Acknowledgements
+- [StackFuel](https://stackfuel.com/) — for supporting applied ML learning  
+- [World Bank](https://data.worldbank.org/) and [UNDP](https://hdr.undp.org/) — for open datasets  
+- `scikit-learn`, `SHAP`, and `pandas` communities — for transparent ML tools  
+
+---
+
+⭐ **If you find this project insightful, please give it a star!**
