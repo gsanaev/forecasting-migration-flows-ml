@@ -2,3 +2,10 @@ __pycache__
 
 data
 .DS_Store
+
+# Ignore model and output contents, keep folders
+models/*
+!models/.gitkeep
+
+outputs/*
+!outputs/.gitkeep
