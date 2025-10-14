@@ -2,24 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🌍 Forecasting Migration Flows with Machine Learning</title>
-    <meta http-equiv="refresh" content="4; url=01-data-preparation-cleaning.html">
     <style>
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
             background-color: #fafafa;
             color: #222;
-            margin: 40px auto;
-            max-width: 800px;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            text-align: center;
         }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 0.3em;
+        header {
+            background: linear-gradient(90deg, #0b6efd, #3a8ef6);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 0.4em;
+        }
+
+        header p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #eef3ff;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h2 {
+            border-left: 4px solid #0b6efd;
+            padding-left: 10px;
+            color: #0b6efd;
+            margin-top: 2rem;
         }
 
         ul {
@@ -28,49 +54,92 @@
         }
 
         li {
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
         a {
             text-decoration: none;
             color: #0366d6;
-            font-size: 1.1em;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
         a:hover {
+            color: #024b9c;
             text-decoration: underline;
         }
 
-        .note {
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
             font-size: 0.9em;
             color: #555;
-            margin-top: 1.5em;
+            border-top: 1px solid #ddd;
+            margin-top: 3rem;
         }
     </style>
 </head>
 
 <body>
-    <h1>🌍 Forecasting Migration Flows with Machine Learning</h1>
-    <p>Welcome! You’ll be redirected in a few seconds to the first notebook:
-        <strong>🧹 Data Preparation & Cleaning</strong>
-    </p>
+    <header>
+        <h1>🌍 Forecasting Migration Flows with Machine Learning</h1>
+        <p>
+            An open, reproducible machine learning pipeline for analyzing and forecasting
+            international migration dynamics (1990–2030) across 160+ countries.
+        </p>
+    </header>
 
-    <ul>
-        <li><a href="01-data-preparation-cleaning.html">🧹 Data Preparation & Cleaning</a></li>
-        <li><a href="02-exploratory-data-analysis.html">🔍 Exploratory Data Analysis (EDA)</a></li>
-        <li><a href="03-feature-engineering.html">⚙️ Feature Engineering</a></li>
-        <li><a href="04-modeling.html">🌳 Modeling & SHAP Interpretation</a></li>
-        <li><a href="05-forecasting-validation.html">📈 Forecasting & Validation</a></li>
-    </ul>
+    <main>
+        <h2>🎯 Project Overview</h2>
+        <p>
+            This project explores how <strong>economic</strong>, <strong>demographic</strong>,
+            and <strong>development indicators</strong> shape migration flows globally.
+            Using open datasets from the <strong>World Bank</strong> and <strong>UNDP</strong>,
+            it builds an interpretable machine learning model that forecasts net migration rates
+            and simulates “what-if” development and crisis scenarios.
+        </p>
 
-    <p class="note">
-        (Redirecting automatically in 4 seconds…)
-    </p>
+        <h2>📘 Workflow Notebooks</h2>
+        <ul>
+            <li><a href="01-data-preparation-cleaning.html">🧹 Data Preparation & Cleaning</a> — Collect, merge, and
+                clean World Bank and HDI data.</li>
+            <li><a href="02-exploratory-data-analysis.html">🔍 Exploratory Data Analysis (EDA)</a> — Explore
+                distributions, correlations, and missingness patterns.</li>
+            <li><a href="03-feature-engineering.html">⚙️ Feature Engineering</a> — Build interpretable and
+                interaction-based predictors for modeling.</li>
+            <li><a href="04-modeling.html">🌳 Modeling & SHAP Interpretation</a> — Train Random Forest models and
+                interpret them using SHAP values.</li>
+            <li><a href="05-forecasting-validation.html">📈 Forecasting & Validation</a> — Evaluate temporal performance
+                and produce 2030 scenario forecasts.</li>
+        </ul>
 
-    <p style="margin-top: 2em; font-size: 0.9em;">
-        Created by <strong>Golib Sanaev</strong> · View the full project on
-        <a href="https://github.com/gsanaev/forecasting-migration-flows-ml" target="_blank">GitHub</a>.
-    </p>
+        <h2>💡 Key Insights</h2>
+        <ul>
+            <li>📉 Most countries show stable migration rates near zero, with crisis periods driving extreme outflows.
+            </li>
+            <li>🌱 Fertility decline and HDI growth are the strongest predictors of sustained migration inflows.</li>
+            <li>💼 Economic expansion amplifies inflows in developed regions, while demographic pressure drives outflows
+                in low-income countries.</li>
+            <li>🌎 The 2024–2030 forecasts suggest continued divergence between demographic and economic migration
+                drivers.</li>
+        </ul>
+
+        <h2>🔗 Additional Information</h2>
+        <p>
+            Full project documentation, data sources, and reproducible code are available on
+            <a href="https://github.com/gsanaev/forecasting-migration-flows-ml" target="_blank">GitHub</a>.
+            You can also explore interactive notebook outputs directly above.
+        </p>
+    </main>
+
+    <footer>
+        © 2025 <strong>Golib Sanaev</strong> · Project on global migration forecasting using machine learning.<br>
+        <a href="https://github.com/gsanaev/forecasting-migration-flows-ml" target="_blank">GitHub Repository</a> ·
+        <a href="https://www.linkedin.com/in/golib-sanaev/" target="_blank">LinkedIn</a> ·
+        <a href="https://stackfuel.com/de/" target="_blank">StackFuel</a><br><br>
+        <em>Special thanks to the StackFuel Team for inspiring and supporting data-driven learning in applied machine
+            learning and analytics.</em>
+    </footer>
 </body>
 
 </html>
