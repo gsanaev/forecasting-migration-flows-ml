@@ -7517,7 +7517,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%F0%9F%A7%B9-Forecasting-Migration-Flows-%E2%80%94-Notebook-01:-Data-Preparation-&amp;-Cleaning">🧹 Forecasting Migration Flows — <strong>Notebook 01: Data Preparation &amp; Cleaning</strong><a class="anchor-link" href="#%F0%9F%A7%B9-Forecasting-Migration-Flows-%E2%80%94-Notebook-01:-Data-Preparation-&amp;-Cleaning">¶</a></h1><table>
+<h1 id="%F0%9F%A7%B9-Forecasting-Migration-Flows-%E2%80%94-Notebook-01:-Data-Preparation-and-Cleaning">🧹 Forecasting Migration Flows — <strong>Notebook 01: Data Preparation and Cleaning</strong><a class="anchor-link" href="#%F0%9F%A7%B9-Forecasting-Migration-Flows-%E2%80%94-Notebook-01:-Data-Preparation-and-Cleaning">¶</a></h1><table>
 <thead>
 <tr>
 <th><strong>Author</strong></th>
@@ -7535,7 +7535,7 @@ a.anchor-link {
 </tr>
 <tr>
 <td><strong>Last Updated</strong></td>
-<td>2025-10-12</td>
+<td>2025-10-14</td>
 </tr>
 </tbody>
 </table>
@@ -7549,18 +7549,23 @@ a.anchor-link {
 <li>Export of final cleaned datasets for downstream analysis and modeling</li>
 </ul>
 <hr/>
-<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ol>
-<li><a href="#1-setup">Setup</a></li>
-<li><a href="#2-separate-countries-and-aggregates">Separate Countries and Aggregates</a><br/>
-2.1. <a href="#21-save-separate-datasets">Save Separate Datasets</a></li>
-<li><a href="#3-load-cleaned-datasets-for-analysis">Load Cleaned Datasets for Analysis</a></li>
-<li><a href="#4-data-availability-and-completeness">Data Availability and Completeness</a><br/>
-4.1. <a href="#41-utility-functions">Utility Functions</a><br/>
-4.2. <a href="#42-data-cleaning-and-imputation-for-countries">Data Cleaning and Imputation for Countries</a><br/>
-4.3. <a href="#43-data-cleaning-and-imputation-for-aggregates">Data Cleaning and Imputation for Aggregates</a><br/>
-4.4. <a href="#44-final-checks-and-export">Final Checks and Export</a><br/>
-4.5. <a href="#45-dropped-countries-diagnostic">Dropped Countries Diagnostic</a></li>
-</ol>
+<p><a id="top"></a></p>
+<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ul>
+<li><a href="#%E2%9A%99%EF%B8%8F-1.-Setup">⚙️ 1. Setup</a></li>
+<li><a href="#%F0%9F%8C%8D-2.-Separate-Countries-and-Aggregates">🌍 2. Separate Countries and Aggregates</a><ul>
+<li><a href="#%F0%9F%92%BE-2.1-Save-Separate-Datasets">💾 2.1 Save Separate Datasets</a></li>
+</ul>
+</li>
+<li><a href="#%F0%9F%93%82-3.-Load-Cleaned-Datasets-for-Analysis">📂 3. Load Cleaned Datasets for Analysis</a></li>
+<li><a href="#%F0%9F%93%8A-4.-Data-Availability-and-Completeness">📊 4. Data Availability and Completeness</a><ul>
+<li><a href="#%F0%9F%A7%A9-4.1-Utility-Functions">🧩 4.1 Utility Functions</a></li>
+<li><a href="#%F0%9F%8C%8E-4.2-Data-Cleaning-and-Imputation-for-Countries">🌎 4.2 Data Cleaning and Imputation for Countries</a></li>
+<li><a href="#%F0%9F%8C%90-4.3-Data-Cleaning-and-Imputation-for-Aggregates">🌐 4.3 Data Cleaning and Imputation for Aggregates</a></li>
+<li><a href="#%E2%9C%85-4.4-Final-Checks-and-Export">✅ 4.4 Final Checks and Export</a></li>
+<li><a href="#%F0%9F%A7%AD-4.5-Dropped-Countries-Diagnostic">🧭 4.5 Dropped Countries Diagnostic</a></li>
+</ul>
+</li>
+</ul>
 <hr/>
 </div>
 </div>
@@ -7577,6 +7582,7 @@ a.anchor-link {
 <li>Import all required libraries</li>
 <li>Configure dataset paths and environment settings</li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7830,6 +7836,7 @@ a.anchor-link {
 </li>
 <li>Save both processed files into the <code>../data/processed/</code> directory</li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7929,6 +7936,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%92%BE-2.1-Save-Separate-Datasets">💾 2.1 Save Separate Datasets<a class="anchor-link" href="#%F0%9F%92%BE-2.1-Save-Separate-Datasets">¶</a></h3><p>Save the filtered subsets (<code>countries_only.csv</code> and <code>aggregates_only.csv</code>) for later analysis and validation.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7995,6 +8003,7 @@ a.anchor-link {
 <li>Confirm their shapes, columns, and basic completeness</li>
 <li>Prepare data for availability and completeness analysis</li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8052,6 +8061,7 @@ a.anchor-link {
 <li>Entity filtering → <code>drop_empty_entities()</code></li>
 <li>Variable-group imputation → <code>impute_variables()</code></li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8255,6 +8265,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%8C%8E-4.2-Data-Cleaning-and-Imputation-for-Countries">🌎 4.2 Data Cleaning and Imputation for Countries<a class="anchor-link" href="#%F0%9F%8C%8E-4.2-Data-Cleaning-and-Imputation-for-Countries">¶</a></h3><p>Apply the defined utility functions to clean and impute missing values for <strong>country-level</strong> datasets.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8452,6 +8463,7 @@ dtype: int64
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%8C%90-4.3-Data-Cleaning-and-Imputation-for-Aggregates">🌐 4.3 Data Cleaning and Imputation for Aggregates<a class="anchor-link" href="#%F0%9F%8C%90-4.3-Data-Cleaning-and-Imputation-for-Aggregates">¶</a></h3><p>Apply the same cleaning and imputation logic to <strong>aggregate-level</strong> datasets.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8588,7 +8600,8 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%E2%9C%85-4.4-Final-Checks-and-Export">✅ 4.4 Final Checks and Export<a class="anchor-link" href="#%E2%9C%85-4.4-Final-Checks-and-Export">¶</a></h3><p>Before moving to the next notebook (EDA and exploration), verify that all missing values have been properly handled and export the final cleaned datasets for downstream use.</p>
+<h3 id="%E2%9C%85-4.4-Final-Checks-and-Export">✅ 4.4 Final Checks and Export<a class="anchor-link" href="#%E2%9C%85-4.4-Final-Checks-and-Export">¶</a></h3><p>Before moving to the next notebook — <a href="02-exploratory-data-analysis.html"><strong>Notebook 02: Exploratory Data Analysis (EDA)</strong></a>, verify that all missing values have been properly handled and export the final cleaned datasets for downstream use.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8681,6 +8694,7 @@ Aggregates: 0
 This step ensures transparency in data coverage and documents entities excluded due to missing values.</p>
 <p>Most dropped entries correspond to <strong>microstates</strong>, <strong>territories</strong>, or <strong>regions</strong> with incomplete reporting.<br/>
 Only a few larger economies (e.g., <strong>Nigeria</strong>, <strong>Venezuela</strong>) were excluded due to insufficient key indicators.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8891,7 +8905,7 @@ DROPPED COUNTRIES DIAGNOSTIC
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%8F%81-Notebook-Summary-&amp;-Next-Steps">🏁 Notebook Summary &amp; Next Steps<a class="anchor-link" href="#%F0%9F%8F%81-Notebook-Summary-&amp;-Next-Steps">¶</a></h2><p>In this notebook, we:</p>
+<h2 id="%F0%9F%8F%81-Notebook-Summary-and-Next-Steps">🏁 Notebook Summary and Next Steps<a class="anchor-link" href="#%F0%9F%8F%81-Notebook-Summary-and-Next-Steps">¶</a></h2><p>In this notebook, we:</p>
 <ul>
 <li>Prepared and cleaned the <strong>World Bank</strong> and <strong>HDI</strong> datasets</li>
 <li>Separated <strong>country-level</strong> and <strong>aggregate-level</strong> data</li>
@@ -8899,8 +8913,8 @@ DROPPED COUNTRIES DIAGNOSTIC
 <li>Exported finalized cleaned datasets ready for exploratory analysis and modeling</li>
 <li>Documented dropped entities for full transparency</li>
 </ul>
-<p><strong>Next Notebook → <a href="#">Notebook 02 – Exploratory Data Analysis (EDA)</a></strong><br/>
-The following notebook explores statistical characteristics, correlations, and temporal patterns in the cleaned datasets to inform feature engineering and model design.</p>
+<p><strong>Next Notebook → <a href="02-exploratory-data-analysis.html">Notebook 02: Exploratory Data Analysis (EDA)</a></strong><br/>
+In the next notebook, we explore the <strong>statistical patterns</strong>, <strong>correlations</strong>, and <strong>temporal dynamics</strong> in the cleaned datasets — providing insights that guide feature engineering and model development.</p>
 <hr/>
 </div>
 </div>

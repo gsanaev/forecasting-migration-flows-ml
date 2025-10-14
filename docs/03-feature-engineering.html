@@ -7517,7 +7517,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%F0%9F%93%98-Forecasting-Migration-Flows-%E2%80%94-Notebook-03:-Feature-Engineering-&amp;-Modeling">📘 Forecasting Migration Flows — <strong>Notebook 03: Feature Engineering &amp; Modeling</strong><a class="anchor-link" href="#%F0%9F%93%98-Forecasting-Migration-Flows-%E2%80%94-Notebook-03:-Feature-Engineering-&amp;-Modeling">¶</a></h1><table>
+<h1 id="%F0%9F%93%98-Forecasting-Migration-Flows-%E2%80%94-Notebook-03:-Feature-Engineering-and-Modeling">📘 Forecasting Migration Flows — <strong>Notebook 03: Feature Engineering and Modeling</strong><a class="anchor-link" href="#%F0%9F%93%98-Forecasting-Migration-Flows-%E2%80%94-Notebook-03:-Feature-Engineering-and-Modeling">¶</a></h1><table>
 <thead>
 <tr>
 <th><strong>Author</strong></th>
@@ -7535,37 +7535,35 @@ a.anchor-link {
 </tr>
 <tr>
 <td><strong>Last Updated</strong></td>
-<td>2025-10-11</td>
+<td>2025-10-14</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h3 id="%F0%9F%8E%AF-Purpose">🎯 Purpose<a class="anchor-link" href="#%F0%9F%8E%AF-Purpose">¶</a></h3><p>Develop a <strong>feature-engineered, time-aware modeling pipeline</strong> to forecast<br/>
-<strong>net migration (per 1,000 people)</strong>.</p>
-<p>This notebook introduces interpretable engineered variables and interaction terms,<br/>
-builds a clean modeling matrix, and compares baseline and nonlinear models<br/>
-prior to SHAP-based interpretation in the next stage.</p>
+<h3 id="%F0%9F%8E%AF-Purpose">🎯 Purpose<a class="anchor-link" href="#%F0%9F%8E%AF-Purpose">¶</a></h3><p>Develop a <strong>feature-engineered, time-aware modeling pipeline</strong> to forecast <strong>net migration (per 1,000 people)</strong>.</p>
+<p>This notebook introduces interpretable engineered variables and interaction terms, builds a clean modeling matrix, and compares baseline and nonlinear models prior to SHAP-based interpretation in the next stage.</p>
 <p><strong>Links</strong></p>
 <ul>
-<li><strong>Input:</strong> <code>countries_clean.csv</code> (from <strong>Notebook 02 — Exploratory Data Analysis</strong>)</li>
+<li><strong>Input:</strong> <code>countries_clean.csv</code> (from <strong><a href="02-exploratory-data-analysis.html">Notebook 02: Exploratory Data Analysis (EDA)</a></strong>)</li>
 <li><strong>Output:</strong> trained models (<code>random_forest_model.pkl</code>, <code>X_columns.pkl</code>) for use in<br/>
-<strong>Notebook 04 — Model Interpretation &amp; Scenario</strong> and<br/>
-<strong>Notebook 05 — Forecasting &amp; Validation</strong></li>
+<strong><a href="04-modeling.html">Notebook 04: Model Interpretation and Scenario Analysis</a></strong> and<br/>
+<strong><a href="05-forecasting-validation.html">Notebook 05: Forecasting and Validation</a></strong></li>
 </ul>
 <hr/>
-<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ol>
-<li><a href="#1-setup-and-load-clean-data">Setup and Load Clean Data</a></li>
-<li><a href="#2-target-and-feature-engineering">Target and Feature Engineering</a></li>
-<li><a href="#3-feature-matrix-construction">Feature Matrix Construction</a></li>
-<li><a href="#4-time-aware-trainvalidation-split">Time-Aware Train/Validation Split</a></li>
-<li><a href="#5-baselines-and-scaling">Baselines and Scaling</a></li>
-<li><a href="#6-models-linear-regression-and-random-forest">Models — Linear Regression and Random Forest</a></li>
-<li><a href="#7-evaluation">Evaluation</a></li>
-<li><a href="#8-feature-importance-random-forest">Feature Importance (Random Forest)</a></li>
-<li><a href="#9-error-slices-by-region-income-group">Error Slices (by Region / Income Group)</a></li>
-<li><a href="#10-save-artifacts">Save Artifacts</a></li>
-<li><a href="#11-key-insights-summary">Key Insights Summary</a></li>
-</ol>
+<p><a id="top"></a></p>
+<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ul>
+<li><a href="#%E2%9A%99%EF%B8%8F-1.-Setup-and-Load-Clean-Data">⚙️ 1. Setup and Load Clean Data</a></li>
+<li><a href="#%F0%9F%A7%A9-2.-Target-and-Feature-Engineering">🧩 2. Target and Feature Engineering</a></li>
+<li><a href="#%F0%9F%A7%B1-3.-Feature-Matrix-Construction">🧱 3. Feature Matrix Construction</a></li>
+<li><a href="#time-aware-train-validation-split">⏱️ 4. Time-Aware Train / Validation Split</a></li>
+<li><a href="#%F0%9F%93%8F-5.-Baselines-and-Scaling">📏 5. Baselines and Scaling</a></li>
+<li><a href="#models-linear-and-random-forest">🤖 6. Models — Linear Regression and Random Forest</a></li>
+<li><a href="#%F0%9F%8E%AF-7.-Evaluation">🎯 7. Evaluation</a></li>
+<li><a href="#feature-importance">🌲 8. Feature Importance (Random Forest)</a></li>
+<li><a href="#error-slices">🧮 9. Error Slices (by Region / Income Group)</a></li>
+<li><a href="#%F0%9F%92%BE-10.-Save-Artifacts">💾 10. Save Artifacts</a></li>
+<li><a href="#%F0%9F%A7%BE-11.-Key-Insights-Summary">🧾 11. Key Insights Summary</a></li>
+</ul>
 <hr/>
 </div>
 </div>
@@ -7577,7 +7575,9 @@ prior to SHAP-based interpretation in the next stage.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%E2%9A%99%EF%B8%8F-1.-Setup-and-Load-Clean-Data">⚙️ 1. Setup and Load Clean Data<a class="anchor-link" href="#%E2%9A%99%EF%B8%8F-1.-Setup-and-Load-Clean-Data">¶</a></h2><p>Load the cleaned dataset produced in <strong><a href="02-exploratory-data-analysis.ipynb">Notebook 02: Exploratory Data Analysis</a></strong>, configure the working environment, and verify that all required columns for feature engineering are available.</p>
+<h2 id="%E2%9A%99%EF%B8%8F-1.-Setup-and-Load-Clean-Data">⚙️ 1. Setup and Load Clean Data<a class="anchor-link" href="#%E2%9A%99%EF%B8%8F-1.-Setup-and-Load-Clean-Data">¶</a></h2><p>Load the cleaned dataset produced in <strong><a href="02-exploratory-data-analysis.html">Notebook 02: Exploratory Data Analysis (EDA)</a></strong>, configure the working environment, and verify that all required columns for feature engineering are available.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -7823,6 +7823,7 @@ prior to SHAP-based interpretation in the next stage.</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="%F0%9F%A7%A9-2.-Target-and-Feature-Engineering">🧩 2. Target and Feature Engineering<a class="anchor-link" href="#%F0%9F%A7%A9-2.-Target-and-Feature-Engineering">¶</a></h2><p>Derive key target and contextual variables used for model training.<br/>
 Transformations emphasize <strong>economic</strong> and <strong>demographic interpretability</strong> while avoiding target leakage.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7880,8 +7881,7 @@ and region-based interactions are intentionally omitted to preserve interpretabi
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%94%8D-Correlation-Context-from-Notebook-02">🔍 Correlation Context from Notebook 02<a class="anchor-link" href="#%F0%9F%94%8D-Correlation-Context-from-Notebook-02">¶</a></h2><p>Feature construction is guided by prior correlation analysis.<br/>
-The heatmap below (from <strong>Notebook 02 — Exploratory Data Analysis</strong>) highlights clusters of strongly correlated variables, motivating the creation of ratio-based and interaction features.</p>
+<h2 id="%F0%9F%94%8D-Correlation-Context-from-Notebook-02">🔍 Correlation Context from Notebook 02<a class="anchor-link" href="#%F0%9F%94%8D-Correlation-Context-from-Notebook-02">¶</a></h2><p>Feature construction is guided by prior correlation analysis. The heatmap below (from <strong><a href="02-exploratory-data-analysis.html">Notebook 02: Exploratory Data Analysis (EDA)</a></strong>) highlights clusters of strongly correlated variables, motivating the creation of ratio-based and interaction features.</p>
 <p align="center">
 <img alt="Correlation Heatmap from Notebook 02" src="../docs/correlation_heatmap_country_level.png" width="800"/>
 </p>
@@ -7990,6 +7990,7 @@ The heatmap below (from <strong>Notebook 02 — Exploratory Data Analysis</stron
 <li>Income-tier interaction terms for growth and population</li>
 </ul>
 <p>Migration-related variables are <strong>explicitly excluded</strong> to prevent data leakage.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8075,12 +8076,13 @@ The heatmap below (from <strong>Notebook 02 — Exploratory Data Analysis</stron
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%E2%8F%B1%EF%B8%8F-4.-Time-Aware-Train-/-Validation-Split">⏱️ 4. Time-Aware Train / Validation Split<a class="anchor-link" href="#%E2%8F%B1%EF%B8%8F-4.-Time-Aware-Train-/-Validation-Split">¶</a></h2><p>Partition the dataset by <strong>year</strong> to simulate real-world forecasting:</p>
+<h2 id="%E2%8F%B1%EF%B8%8F-4.-Time-Aware-Train-/-Validation-Split-">⏱️ 4. Time-Aware Train / Validation Split <a id="time-aware-train-validation-split"></a><a class="anchor-link" href="#%E2%8F%B1%EF%B8%8F-4.-Time-Aware-Train-/-Validation-Split-">¶</a></h2><p>Partition the dataset by <strong>year</strong> to simulate real-world forecasting:</p>
 <ul>
 <li>Training period ≤ <strong>2018</strong></li>
 <li>Validation period = <strong>2019–2023</strong></li>
 </ul>
 <p>This approach ensures the model generalizes <strong>forward in time</strong> without peeking into future data.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8143,6 +8145,7 @@ The heatmap below (from <strong>Notebook 02 — Exploratory Data Analysis</stron
 <li><strong>Train mean baseline:</strong> predicts the average historical migration rate</li>
 </ul>
 <p>Numeric features are <strong>standardized</strong> for regression algorithms, while <strong>tree-based models</strong> (e.g., Random Forest) remain unscaled.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8260,13 +8263,14 @@ The heatmap below (from <strong>Notebook 02 — Exploratory Data Analysis</stron
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest">🤖 6. Models — Linear Regression and Random Forest<a class="anchor-link" href="#%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest">¶</a></h2><p>Train three complementary estimators on the same feature set:</p>
+<h2 id="%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest-">🤖 6. Models — Linear Regression and Random Forest <a id="models-linear-and-random-forest"></a><a class="anchor-link" href="#%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest-">¶</a></h2><p>Train three complementary estimators on the same feature set:</p>
 <ul>
 <li><strong>OLS Linear Regression</strong> — captures baseline linear relationships</li>
 <li><strong>Ridge Regression</strong> — adds L2 regularization for improved numerical stability</li>
 <li><strong>Random Forest Regressor</strong> — non-parametric ensemble model capturing nonlinear effects and feature interactions</li>
 </ul>
 <p>All models use identical <strong>train/validation splits</strong> to ensure fair performance comparison.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8404,6 +8408,7 @@ The <strong>Random Forest</strong> achieves the best overall performance<br/>
 (R² ≈ 0.42, RMSE ≈ 6.3), modestly improving over linear alternatives<br/>
 while maintaining interpretability and robustness.</p>
 </blockquote>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8561,6 +8566,7 @@ while maintaining interpretability and robustness.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="feature-importance"></a></p>
 <h2 id="%F0%9F%8C%B2-8.-Feature-Importance-(Random-Forest)">🌲 8. Feature Importance (Random Forest)<a class="anchor-link" href="#%F0%9F%8C%B2-8.-Feature-Importance-(Random-Forest)">¶</a></h2><p>Examine the <strong>relative influence of predictors</strong> on model performance. Feature importance reflects how strongly each variable contributes to explaining variation in migration outcomes.</p>
 <p><strong>Key drivers identified:</strong></p>
 <ul>
@@ -8573,6 +8579,7 @@ while maintaining interpretability and robustness.</p>
 <blockquote>
 <p>These findings align with migration theory — linking <strong>demographic pressure</strong>, <strong>development stage</strong>, and <strong>economic opportunity</strong> as core determinants of population movement.</p>
 </blockquote>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8767,9 +8774,11 @@ while maintaining interpretability and robustness.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="error-slices"></a></p>
 <h2 id="%F0%9F%A7%AE-9.-Error-Slices-(by-Region-/-Income-Group)">🧮 9. Error Slices (by Region / Income Group)<a class="anchor-link" href="#%F0%9F%A7%AE-9.-Error-Slices-(by-Region-/-Income-Group)">¶</a></h2><p>Evaluate <strong>prediction errors across country clusters</strong> to uncover potential model biases. Residual analysis helps identify whether performance varies systematically by geography or development level.</p>
 <p><strong>Key observation:</strong><br/>
 Errors are typically lowest for <strong>high-income regions</strong> and highest for <strong>low-income groups</strong>, reflecting greater volatility and unmodeled crisis dynamics in those contexts.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8947,7 +8956,8 @@ Errors are typically lowest for <strong>high-income regions</strong> and highest
 <li><code>random_forest_model.pkl</code> — trained Random Forest model</li>
 <li><code>X_columns.pkl</code> — feature column list used during training</li>
 </ul>
-<p>These artifacts will be loaded in <strong><a href="04-model-interpretation-and-scenario.ipynb">Notebook 04: Model Interpretation &amp; Scenario Analysis</a></strong>.</p>
+<p>These artifacts will be loaded in <strong><a href="04-modeling.html">Notebook 04: Model Interpretation and Scenario Analysis</a></strong>.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -9051,8 +9061,9 @@ Errors are typically lowest for <strong>high-income regions</strong> and highest
 </ul>
 <blockquote>
 <p>This feature-engineered modeling setup establishes a <strong>robust, interpretable foundation</strong><br/>
-for the next phase of the workflow — <strong><a href="04-model-interpretation-and-scenario.ipynb">Notebook 04: Model Interpretation &amp; Scenario Analysis</a></strong>.</p>
+for the next phase of the workflow — <strong><a href="04-modeling.html">Notebook 04: Model Interpretation and Scenario Analysis</a></strong>.</p>
 </blockquote>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>

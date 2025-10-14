@@ -7517,7 +7517,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%F0%9F%A4%96-Forecasting-Migration-Flows-%E2%80%94-Notebook-05:-Forecasting-&amp;-Validation">🤖 Forecasting Migration Flows — <strong>Notebook 05: Forecasting &amp; Validation</strong><a class="anchor-link" href="#%F0%9F%A4%96-Forecasting-Migration-Flows-%E2%80%94-Notebook-05:-Forecasting-&amp;-Validation">¶</a></h1><p><em>Validation of Random Forest migration forecasts and scenario-based inference (1990 – 2023)</em></p>
+<h1 id="%F0%9F%A4%96-Forecasting-Migration-Flows-%E2%80%94-Notebook-05:-Forecasting-and-Validation">🤖 Forecasting Migration Flows — <strong>Notebook 05: Forecasting and Validation</strong><a class="anchor-link" href="#%F0%9F%A4%96-Forecasting-Migration-Flows-%E2%80%94-Notebook-05:-Forecasting-and-Validation">¶</a></h1><p><em>Validation of Random Forest migration forecasts and scenario-based inference (1990 – 2023)</em></p>
 <table>
 <thead>
 <tr>
@@ -7532,40 +7532,44 @@ a.anchor-link {
 </tr>
 <tr>
 <td><strong>Created</strong></td>
-<td>2025-10-13</td>
+<td>2025-09-23</td>
 </tr>
 <tr>
 <td><strong>Last Updated</strong></td>
-<td>2025-10-13</td>
+<td>2025-10-14</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h3 id="%F0%9F%8E%AF-Purpose">🎯 Purpose<a class="anchor-link" href="#%F0%9F%8E%AF-Purpose">¶</a></h3><p>This notebook develops, validates, and applies a <strong>forecasting model</strong> for <em>net migration per 1 000 people</em> using a machine-learning framework.<br/>
-It extends outputs from <strong><a href="04-feature-engineering-model-setup.ipynb">Notebook 04: Feature Engineering &amp; Model Setup</a></strong> and produces robust, scenario-based forecasts with uncertainty estimation.</p>
+<h3 id="%F0%9F%8E%AF-Purpose">🎯 Purpose<a class="anchor-link" href="#%F0%9F%8E%AF-Purpose">¶</a></h3><p>This notebook develops, validates, and applies a <strong>forecasting model</strong> for <em>net migration per 1,000 people</em> using a machine-learning framework. It extends outputs from <a href="04-modeling.html"><strong>Notebook 04: Model Interpretation and Scenario Analysis</strong></a> and produces robust, scenario-based forecasts with uncertainty estimation.</p>
 <p>Key analytical steps include:</p>
 <ul>
 <li>Setting up configuration, feature interactions, and model parameters</li>
-<li>Performing temporal validation (expanding-window &amp; rolling-origin)</li>
+<li>Performing temporal validation (expanding-window and rolling-origin)</li>
 <li>Evaluating model performance across income groups</li>
 <li>Estimating empirical prediction intervals (90 % PI coverage)</li>
 <li>Running future-scenario forecasts and GDP sensitivity tests</li>
 <li>Visualizing residuals and summarizing metrics</li>
 </ul>
 <hr/>
-<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ol>
-<li><a href="#1-setup--configuration">Setup &amp; Configuration</a></li>
-<li><a href="#2-data-loading--preparation">Data Loading &amp; Preparation</a></li>
-<li><a href="#3-temporal-validation">Temporal Validation</a><br/>
-3.1 <a href="#31-expandingwindow-timeseriessplit">Expanding-Window (TimeSeriesSplit)</a><br/>
-3.2 <a href="#32-rollingorigin-validation">Rolling-Origin Validation</a><br/>
-3.3 <a href="#33-diagnostics-by-income-group">Diagnostics by Income Group</a></li>
-<li><a href="#4-uncertainty-estimation">Uncertainty Estimation</a></li>
-<li><a href="#5-forecasting--scenario-analysis">Forecasting &amp; Scenario Analysis</a><br/>
-5.1 <a href="#51-forecast-api">Forecast API</a></li>
-<li><a href="#6-visualization--diagnostics">Visualization &amp; Diagnostics</a></li>
-<li><a href="#7-summary--outputs">Summary &amp; Outputs</a></li>
-</ol>
+<p><a id="top"></a></p>
+<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ul>
+<li><a href="#setup">⚙️ 1. Setup and Configuration</a></li>
+<li><a href="#data-loading">📂 2. Data Loading and Preparation</a></li>
+<li><a href="#temporal-validation">⏱️ 3. Temporal Validation</a><ul>
+<li><a href="#expanding-window">🔁 3.1 Expanding-Window (TimeSeriesSplit)</a></li>
+<li><a href="#rolling-origin">🔄 3.2 Rolling-Origin Validation</a></li>
+<li><a href="#income-diagnostics">📊 3.3 Diagnostics by Income Group</a></li>
+</ul>
+</li>
+<li><a href="#uncertainty">🎯 4. Uncertainty Estimation</a></li>
+<li><a href="#forecasting">🌍 5. Forecasting and Scenario Analysis</a><ul>
+<li><a href="#forecast-api">🧩 5.1 Forecast API</a></li>
+</ul>
+</li>
+<li><a href="#visualization">🖼️ 6. Visualization and Diagnostics</a></li>
+<li><a href="#summary">🧾 7. Summary and Outputs</a></li>
+</ul>
 <hr/>
 </div>
 </div>
@@ -7577,7 +7581,9 @@ It extends outputs from <strong><a href="04-feature-engineering-model-setup.ipyn
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%E2%9A%99%EF%B8%8F-1.-Setup-&amp;-Configuration">⚙️ 1. Setup &amp; Configuration<a class="anchor-link" href="#%E2%9A%99%EF%B8%8F-1.-Setup-&amp;-Configuration">¶</a></h2><p>Import libraries, define global parameters, and prepare helper functions.</p>
+<h2 id="%E2%9A%99%EF%B8%8F-1.-Setup-and-Configuration-">⚙️ 1. Setup and Configuration <a id="setup"></a><a class="anchor-link" href="#%E2%9A%99%EF%B8%8F-1.-Setup-and-Configuration-">¶</a></h2><p>Import libraries, define global parameters, and prepare helper functions.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -7589,7 +7595,7 @@ It extends outputs from <strong><a href="04-feature-engineering-model-setup.ipyn
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># === Setup &amp; Configuration ===</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># === Setup and Configuration ===</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
@@ -7640,7 +7646,9 @@ It extends outputs from <strong><a href="04-feature-engineering-model-setup.ipyn
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%93%82-2.-Data-Loading-&amp;-Preparation">📂 2. Data Loading &amp; Preparation<a class="anchor-link" href="#%F0%9F%93%82-2.-Data-Loading-&amp;-Preparation">¶</a></h2><p>Load the processed dataset and apply feature engineering (income-group interactions, clipping, etc.).</p>
+<h2 id="%F0%9F%93%82-2.-Data-Loading-and-Preparation-">📂 2. Data Loading and Preparation <a id="data-loading"></a><a class="anchor-link" href="#%F0%9F%93%82-2.-Data-Loading-and-Preparation-">¶</a></h2><p>Load the processed dataset and apply feature engineering (income-group interactions, clipping, etc.).</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -7652,7 +7660,7 @@ It extends outputs from <strong><a href="04-feature-engineering-model-setup.ipyn
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># === Data Loading &amp; Preparation ===</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># === Data Loading and Preparation ===</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">load_model_ready</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Load the model-ready dataset from the processed data folder."""</span>
@@ -7747,8 +7755,6 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 
 <span class="c1"># === Evaluation Helper ===</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
-
 <span class="k">def</span><span class="w"> </span><span class="nf">rmse</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Compute Root Mean Squared Error (RMSE)."""</span>
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)))</span>
@@ -7788,12 +7794,15 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%E2%8F%B1%EF%B8%8F-3.-Temporal-Validation">⏱️ 3. Temporal Validation<a class="anchor-link" href="#%E2%8F%B1%EF%B8%8F-3.-Temporal-Validation">¶</a></h2><p>Evaluate forecasting stability using two complementary strategies:</p>
+<h2 id="%E2%8F%B1%EF%B8%8F-3.-Temporal-Validation-">⏱️ 3. Temporal Validation <a id="temporal-validation"></a><a class="anchor-link" href="#%E2%8F%B1%EF%B8%8F-3.-Temporal-Validation-">¶</a></h2><p>Evaluate forecasting stability using two complementary strategies:</p>
 <ul>
 <li><strong>Expanding-window</strong> (index-based TimeSeriesSplit)</li>
 <li><strong>Rolling-origin</strong> (year-based look-ahead)</li>
 </ul>
-<h3 id="%F0%9F%94%81-3.1-Expanding-Window-(TimeSeriesSplit)">🔁 3.1 Expanding-Window (TimeSeriesSplit)<a class="anchor-link" href="#%F0%9F%94%81-3.1-Expanding-Window-(TimeSeriesSplit)">¶</a></h3>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
+<h3 id="%F0%9F%94%81-3.1-Expanding-Window-(TimeSeriesSplit)-">🔁 3.1 Expanding-Window (TimeSeriesSplit) <a id="expanding-window"></a><a class="anchor-link" href="#%F0%9F%94%81-3.1-Expanding-Window-(TimeSeriesSplit)-">¶</a></h3><p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -7849,7 +7858,8 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%F0%9F%94%84-3.2.-Rolling-Origin-Validation">🔄 3.2. Rolling-Origin Validation<a class="anchor-link" href="#%F0%9F%94%84-3.2.-Rolling-Origin-Validation">¶</a></h3>
+<h3 id="%F0%9F%94%84-3.2-Rolling-Origin-Validation-">🔄 3.2 Rolling-Origin Validation <a id="rolling-origin"></a><a class="anchor-link" href="#%F0%9F%94%84-3.2-Rolling-Origin-Validation-">¶</a></h3><p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -7950,7 +7960,8 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%F0%9F%93%8A-3.3.-Diagnostics-by-Income-Group">📊 3.3. Diagnostics by Income Group<a class="anchor-link" href="#%F0%9F%93%8A-3.3.-Diagnostics-by-Income-Group">¶</a></h3>
+<h3 id="%F0%9F%93%8A-3.3-Diagnostics-by-Income-Group-">📊 3.3 Diagnostics by Income Group <a id="income-diagnostics"></a><a class="anchor-link" href="#%F0%9F%93%8A-3.3-Diagnostics-by-Income-Group-">¶</a></h3><p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -8016,7 +8027,9 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%8E%AF-4.-Uncertainty-Estimation">🎯 4. Uncertainty Estimation<a class="anchor-link" href="#%F0%9F%8E%AF-4.-Uncertainty-Estimation">¶</a></h2><p>Estimate residual-based empirical prediction intervals (90 % PI) and check their coverage on out-of-fold predictions.</p>
+<h2 id="%F0%9F%8E%AF-4.-Uncertainty-Estimation-">🎯 4. Uncertainty Estimation <a id="uncertainty"></a><a class="anchor-link" href="#%F0%9F%8E%AF-4.-Uncertainty-Estimation-">¶</a></h2><p>Estimate residual-based empirical prediction intervals (90 % PI) and check their coverage on out-of-fold predictions.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -8075,8 +8088,12 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%8C%8D-5.-Forecasting-&amp;-Scenario-Analysis">🌍 5. Forecasting &amp; Scenario Analysis<a class="anchor-link" href="#%F0%9F%8C%8D-5.-Forecasting-&amp;-Scenario-Analysis">¶</a></h2><p>Generate forward forecasts under different economic scenarios.</p>
-<h3 id="%F0%9F%A7%A9-5.1-Forecast-API">🧩 5.1 Forecast API<a class="anchor-link" href="#%F0%9F%A7%A9-5.1-Forecast-API">¶</a></h3><p>Reusable function for scenario inference with optional RF + Linear Regression ensemble.</p>
+<h2 id="%F0%9F%8C%8D-5.-Forecasting-and-Scenario-Analysis-">🌍 5. Forecasting and Scenario Analysis <a id="forecasting"></a><a class="anchor-link" href="#%F0%9F%8C%8D-5.-Forecasting-and-Scenario-Analysis-">¶</a></h2><p>Generate forward forecasts under different economic scenarios.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
+<h3 id="%F0%9F%A7%A9-5.1-Forecast-API-">🧩 5.1 Forecast API <a id="forecast-api"></a><a class="anchor-link" href="#%F0%9F%A7%A9-5.1-Forecast-API-">¶</a></h3><p>Reusable function for scenario inference with optional RF + Linear Regression ensemble.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -8128,7 +8145,9 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%96%BC%EF%B8%8F-6.-Visualization-&amp;-Diagnostics">🖼️ 6. Visualization &amp; Diagnostics<a class="anchor-link" href="#%F0%9F%96%BC%EF%B8%8F-6.-Visualization-&amp;-Diagnostics">¶</a></h2><p>Plot residuals and optional country trajectories for qualitative inspection.</p>
+<h2 id="%F0%9F%96%BC%EF%B8%8F-6.-Visualization-and-Diagnostics-">🖼️ 6. Visualization and Diagnostics <a id="visualization"></a><a class="anchor-link" href="#%F0%9F%96%BC%EF%B8%8F-6.-Visualization-and-Diagnostics-">¶</a></h2><p>Plot residuals and optional country trajectories for qualitative inspection.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -8181,7 +8200,9 @@ Data loaded: (5712, 28), years: 1990-2023, countries: 168
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%A7%BE-7.-Summary-&amp;-Outputs">🧾 7. Summary &amp; Outputs<a class="anchor-link" href="#%F0%9F%A7%BE-7.-Summary-&amp;-Outputs">¶</a></h2><p>Review validation metrics, income-group diagnostics, prediction-interval coverage, and saved artifacts.</p>
+<h2 id="%F0%9F%A7%BE-7.-Summary-and-Outputs-">🧾 7. Summary and Outputs <a id="summary"></a><a class="anchor-link" href="#%F0%9F%A7%BE-7.-Summary-and-Outputs-">¶</a></h2><p>Review validation metrics, income-group diagnostics, prediction-interval coverage, and saved artifacts.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
+<hr/>
 </div>
 </div>
 </div>
@@ -8247,7 +8268,7 @@ Artifacts written to: /Users/golibsanaev/Library/CloudStorage/Dropbox/GitHub_gsa
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%E2%9C%85-Notebook-05-Summary-%E2%80%94-Forecasting-&amp;-Validation">✅ Notebook 05 Summary — Forecasting &amp; Validation<a class="anchor-link" href="#%E2%9C%85-Notebook-05-Summary-%E2%80%94-Forecasting-&amp;-Validation">¶</a></h2><p><strong>Model:</strong> Random Forest Regressor (600 trees, sqrt features)<br/>
+<h2 id="%E2%9C%85-Notebook-05-Summary-%E2%80%94-Forecasting-and-Validation">✅ Notebook 05 Summary — Forecasting and Validation<a class="anchor-link" href="#%E2%9C%85-Notebook-05-Summary-%E2%80%94-Forecasting-and-Validation">¶</a></h2><p><strong>Model:</strong> Random Forest Regressor (600 trees, sqrt features)<br/>
 <strong>Target:</strong> <code>net_migration_per_1000_capped</code><br/>
 <strong>Training window:</strong> 1990 – 2023</p>
 <table>
@@ -8275,10 +8296,7 @@ Artifacts written to: /Users/golibsanaev/Library/CloudStorage/Dropbox/GitHub_gsa
 <p><strong>90 % PI coverage:</strong> 0.74<br/>
 <strong>Best performance:</strong> High-income countries<br/>
 <strong>Artifacts:</strong> Saved under <code>/outputs/</code></p>
-<blockquote>
-<p>The model demonstrates stable performance across time and income groups, offering interpretable,
-scenario-driven migration forecasts ready for future-policy simulations.</p>
-</blockquote>
+<p>The model demonstrates stable performance across time and income groups, offering interpretable, scenario-driven migration forecasts ready for future-policy simulations.</p>
 </div>
 </div>
 </div>

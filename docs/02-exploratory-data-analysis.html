@@ -7535,12 +7535,13 @@ a.anchor-link {
 </tr>
 <tr>
 <td><strong>Last Updated</strong></td>
-<td>2025-10-12</td>
+<td>2025-10-14</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h3 id="%F0%9F%8E%AF-Purpose">🎯 Purpose<a class="anchor-link" href="#%F0%9F%8E%AF-Purpose">¶</a></h3><p>This notebook performs <strong>exploratory data analysis (EDA)</strong> on the cleaned datasets produced in <strong><a href="01-data-preparation-cleaning.ipynb">Notebook 01: Data Preparation &amp; Cleaning</a></strong>. The goal is to uncover trends, relationships, and potential predictors of migration flows.</p>
+<h3 id="%F0%9F%8E%AF-Purpose">🎯 Purpose<a class="anchor-link" href="#%F0%9F%8E%AF-Purpose">¶</a></h3><p>This notebook performs <strong>exploratory data analysis (EDA)</strong> on the cleaned datasets produced in <strong><a href="01-data-preparation-cleaning.html">Notebook 01: Data Preparation and Cleaning</a></strong>.</p>
+<p>The goal is to uncover key <strong>trends</strong>, <strong>relationships</strong>, and <strong>potential predictors</strong> of international migration flows.</p>
 <p>Key analytical steps include:</p>
 <ul>
 <li>Visualizing indicator distributions and time coverage</li>
@@ -7549,22 +7550,25 @@ a.anchor-link {
 <li>Detecting outliers, data clusters, and country-level case studies</li>
 </ul>
 <hr/>
-<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ol>
-<li><a href="#1-setup-and-load-clean-data">Setup and Load Clean Data</a></li>
-<li><a href="#2-quick-sanity-checks">Quick Sanity Checks</a></li>
-<li><a href="#3-indicator-distributions">Indicator Distributions</a></li>
-<li><a href="#4-focus-on-net-migration-per-1000-people">Focus on Net Migration (per 1,000 People)</a><br/>
-4.1 <a href="#41-distribution-original-vs-capped">Distribution: Original vs Capped</a><br/>
-4.2 <a href="#42-crisis-flag-for-modeling--eda">Crisis Flag (for Modeling &amp; EDA)</a><br/>
-4.3 <a href="#43-outlier-countries-by-income-group">Outlier Countries by Income Group</a></li>
-<li><a href="#5-global-trend-over-time">Global Trend Over Time</a></li>
-<li><a href="#6-country-level-variation">Country-Level Variation</a></li>
-<li><a href="#7-top-migration-inflows-and-outflows-average-19902023">Top Migration Inflows and Outflows (Avg 1990–2023)</a></li>
-<li><a href="#8-global-vs-regional-migration-trends">Global vs Regional Migration Trends</a></li>
-<li><a href="#9-correlation-and-feature-relationships">Correlation and Feature Relationships</a></li>
-<li><a href="#10-country-level-trends">Country-Level Trends</a></li>
-<li><a href="#11-key-insights-summary">Key Insights Summary</a></li>
-</ol>
+<p><a id="top"></a></p>
+<h2 id="%F0%9F%93%91-Table-of-Contents">📑 Table of Contents<a class="anchor-link" href="#%F0%9F%93%91-Table-of-Contents">¶</a></h2><ul>
+<li><a href="#%E2%9A%99%EF%B8%8F-1.-Setup-and-Load-Clean-Data">⚙️ 1. Setup and Load Clean Data</a></li>
+<li><a href="#%F0%9F%94%8D-2.-Quick-Sanity-Checks">🔍 2. Quick Sanity Checks</a></li>
+<li><a href="#%F0%9F%93%88-3.-Indicator-Distributions">📈 3. Indicator Distributions</a></li>
+<li><a href="#focus-net-migration">🌍 4. Focus on Net Migration (per 1,000 People)</a><ul>
+<li><a href="#%F0%9F%93%8A-4.1-Distribution:-Original-vs-Capped">📊 4.1 Distribution: Original vs Capped</a></li>
+<li><a href="#crisis-flag">⚠️ 4.2 Crisis Flag (for Modeling and EDA)</a></li>
+<li><a href="#%F0%9F%9A%A8-4.3-Outlier-Countries-by-Income-Group">🚨 4.3 Outlier Countries by Income Group</a></li>
+</ul>
+</li>
+<li><a href="#%F0%9F%8C%90-5.-Global-Trend-Over-Time">🌐 5. Global Trend Over Time</a></li>
+<li><a href="#%F0%9F%93%89-6.-Country-Level-Variation">📉 6. Country-Level Variation</a></li>
+<li><a href="#top-inflows-outflows">🚀 7. Top Migration Inflows and Outflows (Average 1990–2023)</a></li>
+<li><a href="#%F0%9F%8C%8E-8.-Global-vs-Regional-Migration-Trends">🌎 8. Global vs Regional Migration Trends</a></li>
+<li><a href="#%F0%9F%94%97-9.-Correlation-and-Feature-Relationships">🔗 9. Correlation and Feature Relationships</a></li>
+<li><a href="#%F0%9F%97%BA%EF%B8%8F-10.-Country-Level-Trends">🗺️ 10. Country-Level Trends</a></li>
+<li><a href="#%F0%9F%A7%A9-11.-Key-Insights-Summary">🧩 11. Key Insights Summary</a></li>
+</ul>
 <hr/>
 </div>
 </div>
@@ -7582,6 +7586,7 @@ Load the cleaned <strong>country-level</strong> and <strong>aggregate-level</str
 The cleaned dataset <code>countries_clean.csv</code> is updated in this notebook to include derived variables such as <code>net_migration_per_1000</code> and other EDA refinements.<br/>
 The original <code>net_migration</code> column is dropped to avoid confusion.<br/>
 This file serves as the canonical clean dataset for all downstream analyses.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7670,6 +7675,7 @@ This file serves as the canonical clean dataset for all downstream analyses.</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="%F0%9F%94%8D-2.-Quick-Sanity-Checks">🔍 2. Quick Sanity Checks<a class="anchor-link" href="#%F0%9F%94%8D-2.-Quick-Sanity-Checks">¶</a></h2><p><strong>Purpose:</strong><br/>
 Verify dataset coverage (countries × years) and inspect basic missingness before proceeding with analysis.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7756,6 +7762,7 @@ Verify dataset coverage (countries × years) and inspect basic missingness befor
 <li>The shape of each distribution highlights global disparities and may reveal measurement or scale inconsistencies.</li>
 <li>Comparing <strong>net migration</strong> to other indicators clarifies whether extreme migration rates are common or exceptional.</li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -7841,11 +7848,14 @@ Verify dataset coverage (countries × years) and inspect basic missingness befor
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="focus-net-migration"></a></p>
 <h2 id="%F0%9F%8C%8D-4.-Focus-on-Net-Migration-(per-1,000-People)">🌍 4. Focus on Net Migration (per 1,000 People)<a class="anchor-link" href="#%F0%9F%8C%8D-4.-Focus-on-Net-Migration-(per-1,000-People)">¶</a></h2><p><strong>Interpretation Tip:</strong><br/>
 The distribution is concentrated around zero, with a small number of countries exhibiting extreme inflows (e.g., Gulf states) or outflows (e.g., conflict-affected nations).</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 <h3 id="%F0%9F%93%8A-4.1-Distribution:-Original-vs-Capped">📊 4.1 Distribution: Original vs Capped<a class="anchor-link" href="#%F0%9F%93%8A-4.1-Distribution:-Original-vs-Capped">¶</a></h3><p><strong>Purpose:</strong><br/>
 Compare the full distribution to a capped version for clearer visualization. Values are capped at ±50 to reduce the impact of extreme crisis years while still preserving those cases in the data.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8076,7 +8086,8 @@ Compare the full distribution to a capped version for clearer visualization. Val
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%E2%9A%A0%EF%B8%8F-4.2-Crisis-Flag-(for-Modeling-&amp;-EDA)">⚠️ 4.2 Crisis Flag (for Modeling &amp; EDA)<a class="anchor-link" href="#%E2%9A%A0%EF%B8%8F-4.2-Crisis-Flag-(for-Modeling-&amp;-EDA)">¶</a></h3><p><strong>Why create <code>is_crisis</code>?</strong><br/>
+<p><a id="crisis-flag"></a></p>
+<h3 id="%E2%9A%A0%EF%B8%8F-4.2-Crisis-Flag-(for-Modeling-and-EDA)">⚠️ 4.2 Crisis Flag (for Modeling and EDA)<a class="anchor-link" href="#%E2%9A%A0%EF%B8%8F-4.2-Crisis-Flag-(for-Modeling-and-EDA)">¶</a></h3><p><strong>Why create <code>is_crisis</code>?</strong><br/>
 Some countries experience <em>extreme spikes or drops</em> in migration due to wars, economic collapse, or humanitarian crises. Such outliers can distort model training if treated as ordinary observations.</p>
 <ul>
 <li>A year is marked as a <strong>crisis</strong> if<br/>
@@ -8084,6 +8095,7 @@ Some countries experience <em>extreme spikes or drops</em> in migration due to w
 <li>These rows are <strong>kept</strong> (not removed) to preserve temporal continuity.</li>
 <li>The <strong>capped</strong> version is used for plots, while <strong><code>is_crisis</code></strong> serves as a modeling control variable.</li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8151,6 +8163,7 @@ Name: is_crisis, dtype: int64</pre>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%9A%A8-4.3-Outlier-Countries-by-Income-Group">🚨 4.3 Outlier Countries by Income Group<a class="anchor-link" href="#%F0%9F%9A%A8-4.3-Outlier-Countries-by-Income-Group">¶</a></h3><p><strong>Purpose:</strong><br/>
 Identify countries driving extreme migration patterns within each income group using a <strong>fixed threshold</strong> of ±50 per 1,000 (<code>is_crisis</code>). The table below displays all crisis observations by income group, followed by a bar chart summarizing counts.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8490,6 +8503,7 @@ Identify countries driving extreme migration patterns within each income group u
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="%F0%9F%8C%90-5.-Global-Trend-Over-Time">🌐 5. Global Trend Over Time<a class="anchor-link" href="#%F0%9F%8C%90-5.-Global-Trend-Over-Time">¶</a></h2><p><strong>Purpose:</strong><br/>
 Visualize the global average net migration rate per year to detect common cycles, turning points, or long-term shifts in global migration dynamics.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8567,6 +8581,7 @@ Visualize the global average net migration rate per year to detect common cycles
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="%F0%9F%93%89-6.-Country-Level-Variation">📉 6. Country-Level Variation<a class="anchor-link" href="#%F0%9F%93%89-6.-Country-Level-Variation">¶</a></h2><p><strong>Purpose:</strong><br/>
 Identify countries with the most <strong>volatile migration histories</strong>, measured by the standard deviation of net migration per 1,000 people across years.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8632,8 +8647,10 @@ Identify countries with the most <strong>volatile migration histories</strong>, 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="top-inflows-outflows"></a></p>
 <h2 id="%F0%9F%9A%80-7.-Top-Migration-Inflows-and-Outflows-(Average-1990%E2%80%932023)">🚀 7. Top Migration Inflows and Outflows (Average 1990–2023)<a class="anchor-link" href="#%F0%9F%9A%80-7.-Top-Migration-Inflows-and-Outflows-(Average-1990%E2%80%932023)">¶</a></h2><p><strong>Purpose:</strong><br/>
 Highlight countries with the highest <strong>average net inflows</strong> and <strong>outflows</strong> of migration over the entire 1990–2023 period.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8854,6 +8871,7 @@ Highlight countries with the highest <strong>average net inflows</strong> and <s
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="%F0%9F%8C%8E-8.-Global-vs-Regional-Migration-Trends">🌎 8. Global vs Regional Migration Trends<a class="anchor-link" href="#%F0%9F%8C%8E-8.-Global-vs-Regional-Migration-Trends">¶</a></h2><p><strong>Purpose:</strong><br/>
 Compare the <strong>global average</strong> migration trend against selected <strong>regions</strong> and <strong>income groups</strong> derived from <code>df_country</code>.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -8979,6 +8997,7 @@ Compare the <strong>global average</strong> migration trend against selected <st
 <h2 id="%F0%9F%94%97-9.-Correlation-and-Feature-Relationships">🔗 9. Correlation and Feature Relationships<a class="anchor-link" href="#%F0%9F%94%97-9.-Correlation-and-Feature-Relationships">¶</a></h2><p><strong>Purpose:</strong><br/>
 Explore how <strong>migration intensity</strong> relates to key <strong>demographic</strong>, <strong>economic</strong>, and <strong>social</strong> indicators. We use the capped version of migration (<code>net_migration_per_1000_capped</code>) to focus on <em>structural relationships</em> rather than one-off crisis spikes that could distort correlations.</p>
 <p>This analysis helps uncover the <strong>underlying drivers</strong> of migration patterns — such as fertility decline, urbanization, and income growth — without overemphasizing short-lived shocks.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -9172,7 +9191,7 @@ Explore how <strong>migration intensity</strong> relates to key <strong>demograp
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%A7%AD-Feature-Correlation-Insights-and-Next-Steps">🧭 Feature Correlation Insights and Next Steps<a class="anchor-link" href="#%F0%9F%A7%AD-Feature-Correlation-Insights-and-Next-Steps">¶</a></h3><p>The correlation analysis revealed clusters of <strong>highly collinear indicators</strong> — notably <code>exports_gdp</code> ↔ <code>imports_gdp</code>, and <code>urban_pop_growth</code> ↔ <code>pop_growth</code>.<br/>
-To improve interpretability and minimize redundancy, the following refinements will be applied in <strong>Notebook 03 — Feature Engineering &amp; Modeling</strong>:</p>
+To improve interpretability and minimize redundancy, the following refinements will be applied in <a href="03-feature-engineering.html"><strong>Notebook 03: Feature Engineering and Modeling</strong></a>:</p>
 <ul>
 <li><strong>Variable selection:</strong> retain only one representative variable from strongly correlated pairs.</li>
 <li><strong>Derived indicators:</strong> create balanced or stability measures, such as<ul>
@@ -9206,6 +9225,7 @@ Visualize migration trends across selected countries representing different migr
 <li><strong>Transit / mixed economies:</strong> Türkiye, Cyprus</li>
 <li><strong>Destination economies:</strong> United Arab Emirates, Qatar, Germany</li>
 </ul>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
@@ -9293,7 +9313,8 @@ Visualize migration trends across selected countries representing different migr
 <li>Identified collinearities guided the design of new, interpretable features in the next stage, including<br/>
 <code>trade_openness_ratio</code>, <code>urbanization_rate_stable</code>, <code>is_crisis_lag1</code>, and income-group-specific interaction terms.</li>
 </ul>
-<p>The dataset is now fully prepared for <strong>feature engineering and predictive modeling</strong> in <strong>Notebook 03 — Feature Engineering &amp; Modeling</strong>.</p>
+<p>The dataset is now fully prepared for <strong>feature engineering and predictive modeling</strong> in <a href="03-feature-engineering.html"><strong>Notebook 03: Feature Engineering and Modeling</strong></a>.</p>
+<p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
 </div>
