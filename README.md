@@ -13,11 +13,12 @@
 
 You can explore the full analysis directly here:
 
-- [🧹 Data Preparation & Cleaning](https://gsanaev.github.io/forecasting-migration-flows-ml/01-data-preparation-cleaning.html)  
-- [🔍 Exploratory Data Analysis (EDA)](https://gsanaev.github.io/forecasting-migration-flows-ml/02-exploratory-data-analysis.html)  
-- [⚙️ Feature Engineering](https://gsanaev.github.io/forecasting-migration-flows-ml/03-feature-engineering.html)  
-- [🌳 Modeling & SHAP Interpretation](https://gsanaev.github.io/forecasting-migration-flows-ml/04-modeling.html)  
-- [📈 Forecasting & Validation](https://gsanaev.github.io/forecasting-migration-flows-ml/05-forecasting-validation.html)  
+- <a href="https://gsanaev.github.io/forecasting-migration-flows-ml/01-data-preparation-cleaning.html" target="_blank">🧹 Data Preparation & Cleaning</a>  
+- <a href="https://gsanaev.github.io/forecasting-migration-flows-ml/02-exploratory-data-analysis.html" target="_blank">🔍 Exploratory Data Analysis (EDA)</a>  
+- <a href="https://gsanaev.github.io/forecasting-migration-flows-ml/03-feature-engineering.html" target="_blank">⚙️ Feature Engineering</a>  
+- <a href="https://gsanaev.github.io/forecasting-migration-flows-ml/04-modeling.html" target="_blank">🌳 Modeling & SHAP Interpretation</a>  
+- <a href="https://gsanaev.github.io/forecasting-migration-flows-ml/05-forecasting-validation.html" target="_blank">📈 Forecasting & Validation</a>  
+
 
 ---
 
