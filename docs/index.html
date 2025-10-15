@@ -77,6 +77,14 @@
             border-top: 1px solid #ddd;
             margin-top: 3rem;
         }
+
+        .update-box {
+            background-color: #e9f2ff;
+            border-left: 4px solid #0b6efd;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
@@ -99,18 +107,38 @@
             and simulates “what-if” development and crisis scenarios.
         </p>
 
+        <div class="update-box">
+            <h3>📅 Recent Update (October 2025)</h3>
+            <p>
+                The pipeline now includes <strong>forecasting through 2030</strong> under four socioeconomic scenarios:
+            </p>
+            <ul>
+                <li>📈 <b>Baseline</b> — steady continuation of current trends</li>
+                <li>🚀 <b>High Growth</b> — +2 pp GDP growth, +3 % HDI</li>
+                <li>⚠️ <b>Crisis</b> — −2 pp GDP growth, −2 % HDI</li>
+                <li>👶 <b>Demographic Pressure</b> — +5 % adolescent fertility</li>
+            </ul>
+            <p>
+                Each scenario includes <b>90 % prediction intervals</b> and regional aggregation summaries.
+                Results are stored in <code>outputs/forecast_results_2024_2030.csv</code> and visualized
+                in the final notebook.
+            </p>
+        </div>
+
         <h2>📘 Workflow Notebooks</h2>
         <ul>
             <li><a href="01-data-preparation-cleaning.html">🧹 Data Preparation & Cleaning</a> — Collect, merge, and
                 clean World Bank and HDI data.</li>
             <li><a href="02-exploratory-data-analysis.html">🔍 Exploratory Data Analysis (EDA)</a> — Explore
                 distributions, correlations, and missingness patterns.</li>
-            <li><a href="03-feature-engineering.html">⚙️ Feature Engineering</a> — Build interpretable and
+            <li><a href="03-feature-engineering-modeling.html">⚙️ Feature Engineering & Modeling</a> — Build
+                interpretable and
                 interaction-based predictors for modeling.</li>
-            <li><a href="04-modeling.html">🌳 Modeling & SHAP Interpretation</a> — Train Random Forest models and
-                interpret them using SHAP values.</li>
+            <li><a href="04-model-interpretation-scenario-analysis.html">🌳 Model Interpretation & Scenario Analysis</a>
+                — Train
+                Random Forest models and interpret them using SHAP values.</li>
             <li><a href="05-forecasting-validation.html">📈 Forecasting & Validation</a> — Evaluate temporal performance
-                and produce 2030 scenario forecasts.</li>
+                and produce scenario-based forecasts through 2030.</li>
         </ul>
 
         <h2>💡 Key Insights</h2>
@@ -119,8 +147,9 @@
             </li>
             <li>🌱 Fertility decline and HDI growth are the strongest predictors of sustained migration inflows.</li>
             <li>💼 Economic expansion amplifies inflows in developed regions, while demographic pressure drives outflows
-                in low-income countries.</li>
-            <li>🌎 The 2024–2030 forecasts suggest continued divergence between demographic and economic migration
+                in
+                low-income countries.</li>
+            <li>🌎 Forecasts for 2024–2030 reveal regional divergence between economic and demographic migration
                 drivers.</li>
         </ul>
 
