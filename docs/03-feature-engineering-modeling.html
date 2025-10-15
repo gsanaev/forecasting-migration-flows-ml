@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>03-feature-engineering</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>03-feature-engineering-modeling</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7546,7 +7546,7 @@ a.anchor-link {
 <ul>
 <li><strong>Input:</strong> <code>countries_clean.csv</code> (from <strong><a href="02-exploratory-data-analysis.html">Notebook 02: Exploratory Data Analysis (EDA)</a></strong>)</li>
 <li><strong>Output:</strong> trained models (<code>random_forest_model.pkl</code>, <code>X_columns.pkl</code>) for use in<br/>
-<strong><a href="04-modeling.html">Notebook 04: Model Interpretation and Scenario Analysis</a></strong> and<br/>
+<strong><a href="04-model-interpretation-scenario-analysis.html">Notebook 04: Model Interpretation and Scenario Analysis</a></strong> and<br/>
 <strong><a href="05-forecasting-validation.html">Notebook 05: Forecasting and Validation</a></strong></li>
 </ul>
 <hr/>
@@ -8262,13 +8262,12 @@ The heatmap below (from <strong>Notebook 02: Exploratory Data Analysis (EDA)</st
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest-">🤖 6. Models — Linear Regression and Random Forest <a id="models-linear-and-random-forest"></a><a class="anchor-link" href="#%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest-">¶</a></h2><p>Train three complementary estimators on the same feature set:</p>
+<h2 id="%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest-">🤖 6. Models — Linear Regression and Random Forest <a id="models-linear-and-random-forest"></a><a class="anchor-link" href="#%F0%9F%A4%96-6.-Models-%E2%80%94-Linear-Regression-and-Random-Forest-">¶</a></h2><p>Train two complementary estimators on the same feature set:</p>
 <ul>
 <li><strong>OLS Linear Regression</strong> — captures baseline linear relationships</li>
-<li><strong>Ridge Regression</strong> — adds L2 regularization for improved numerical stability</li>
 <li><strong>Random Forest Regressor</strong> — non-parametric ensemble model capturing nonlinear effects and feature interactions</li>
 </ul>
-<p>All models use identical <strong>train/validation splits</strong> to ensure fair performance comparison.</p>
+<p>Both models use identical <strong>train/validation splits</strong> to ensure fair performance comparison.</p>
 <p align="right"><a href="#top" style="font-size:90%">⬆️ Back to top</a></p>
 <hr/>
 </div>
