@@ -192,9 +192,14 @@ To build a **reproducible forecasting pipeline** that models **net migration (pe
 
 | Metric | Cross-Validation |
 |--------|------------------|
-| **MAE** | ~2.7–3.2 |
-| **RMSE** | ~4.1–4.8 |
-| **R²** | 0.73–0.79 |
+| **MAE** | ~3.0–3.5 |
+| **RMSE** | ~5.5–6.5 |
+| **R²** | 0.60–0.65 |
+| **90 % PI coverage** | ≈ 0.75 |
+
+**Interpretation:**  
+The Random Forest model demonstrates stable temporal performance and solid explanatory power.  
+Results indicate consistent accuracy across income groups, with best performance among high-income economies.
 
 **Top predictive drivers:**  
 GDP growth, unemployment, population growth, HDI, and fertility rate.
