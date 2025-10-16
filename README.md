@@ -200,7 +200,7 @@ To build a **reproducible forecasting pipeline** that models **net migration (pe
 GDP growth, unemployment, population growth, HDI, and fertility rate.
 
 **Most variable regions:**  
-Sub-Saharan Africa, MENA, and Europe & Central Asia.
+Sub-Saharan Africa, Middle East & North Africa, and Europe & Central Asia.
 
 **Forecasting results (2024–2030):**  
 Baseline forecasts show stable global migration inflows, while high-growth and crisis scenarios diverge moderately, reflecting macroeconomic sensitivity and demographic pressures.
