@@ -1,4 +1,5 @@
 # 🌍 Forecasting Migration Flows with Machine Learning 🚀
+*by **Golib Sanaev***  
 
 > A reproducible data science pipeline to forecast international migration flows (1990–2023, extended to 2030) using demographic, economic, and human development indicators.  
 > Built with **Linear Regression** and **Random Forest** models, and interpreted using **SHAP** explainability methods.
@@ -22,6 +23,7 @@ You can explore the full analysis directly here:
 ---
 
 ## 📊 Project Overview
+**Author:** Golib Sanaev · [LinkedIn](https://www.linkedin.com/in/golib-sanaev) · [GitHub](https://github.com/gsanaev)
 
 **Problem Statement:**  
 International migration is driven by intertwined economic, demographic, and social dynamics. Understanding these drivers and projecting future migration trends are essential for policy and planning.
@@ -274,5 +276,7 @@ Golib Sanaev
 - `scikit-learn`, `SHAP`, and `pandas` communities — for transparent ML tools  
 
 ---
+> This repository was created and maintained by **Golib Sanaev**, Data Scientist specializing in forecasting, econometrics, and applied machine learning.
 
 ⭐ **If you find this project insightful, please give it a star!**
+
